@@ -1,55 +1,34 @@
-CREATE TABLE IF NOT EXISTS vets (
-  id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  first_name VARCHAR(30),
-  last_name VARCHAR(30),
-  INDEX(last_name)
-) engine=InnoDB;
-
-CREATE TABLE IF NOT EXISTS specialties (
+CREATE TABLE IF NOT EXISTS categories (
   id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(80),
   INDEX(name)
 ) engine=InnoDB;
 
-CREATE TABLE IF NOT EXISTS vet_specialties (
-  vet_id INT(4) UNSIGNED NOT NULL,
-  specialty_id INT(4) UNSIGNED NOT NULL,
-  FOREIGN KEY (vet_id) REFERENCES vets(id),
-  FOREIGN KEY (specialty_id) REFERENCES specialties(id),
-  UNIQUE (vet_id,specialty_id)
-) engine=InnoDB;
-
-CREATE TABLE IF NOT EXISTS types (
-  id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(80),
-  INDEX(name)
-) engine=InnoDB;
-
-CREATE TABLE IF NOT EXISTS owners (
+CREATE TABLE IF NOT EXISTS users (
   id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   first_name VARCHAR(30),
   last_name VARCHAR(30),
-  address VARCHAR(255),
-  city VARCHAR(80),
+  email VARCHAR(255),
+  description VARCHAR(255),
   telephone VARCHAR(20),
   INDEX(last_name)
 ) engine=InnoDB;
 
-CREATE TABLE IF NOT EXISTS pets (
+CREATE TABLE IF NOT EXISTS questions (
   id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(30),
-  birth_date DATE,
-  type_id INT(4) UNSIGNED NOT NULL,
-  owner_id INT(4) UNSIGNED,
-  INDEX(name),
-  FOREIGN KEY (owner_id) REFERENCES owners(id),
-  FOREIGN KEY (type_id) REFERENCES types(id)
+  name VARCHAR(255),
+  date DATE,
+  category_id INT(4) UNSIGNED NOT NULL,
+  user_id INT(4) UNSIGNED,
+  INDEX(title),
+  FOREIGN KEY (user_id) REFERENCES users(id),
+  FOREIGN KEY (category_id) REFERENCES categories(id)
 ) engine=InnoDB;
 
-CREATE TABLE IF NOT EXISTS visits (
+CREATE TABLE IF NOT EXISTS answers (
   id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  pet_id INT(4) UNSIGNED,
-  visit_date DATE,
+  answer_id INT(4) UNSIGNED,
+  answer_date DATE,
   description VARCHAR(255),
-  FOREIGN KEY (pet_id) REFERENCES pets(id)
+  FOREIGN KEY (question_id) REFERENCES questions(id)
 ) engine=InnoDB;

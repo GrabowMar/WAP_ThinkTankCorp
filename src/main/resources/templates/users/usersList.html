@@ -1,65 +1,61 @@
 <!DOCTYPE html>
-
 <html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'users')}">
-
 <body>
 <div  class="container-fluid">
   <div class="container xd-container">
-<h2>Users</h2>
-
-<table id="users" class="table table-striped">
-  <thead>
-  <tr>
-    <th style="width: 150px;">Name</th>
-    <th style="width: 200px;">Address</th>
-    <th>Email</th>
-    <th style="width: 120px">Telephone</th>
-    <th>Questions</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr th:each="user : ${listUsers}">
-    <td>
-      <a th:href="@{/users/__${user.id}__}" th:text="${user.firstName + ' ' + user.lastName}"/></a>
-    </td>
-    <td th:text="${user.email}"/>
-    <td th:text="${user.description}"/>
-    <td th:text="${user.telephone}"/>
-    <td><span th:text="${#strings.listJoin(user.questions, ', ')}"/></td>
-  </tr>
-  </tbody>
-</table>
-<div th:if="${totalPages > 1}">
-  <span>Pages:</span>
-  <span>[</span>
-  <span th:each="i: ${#numbers.sequence(1, totalPages)}">
-      <a th:if="${currentPage != i}" th:href="@{'/users?page=' + ${i}}">[[${i}]]</a>
-      <span th:unless="${currentPage != i}">[[${i}]]</span>
-    </span>
-  <span>]&nbsp;</span>
-  <span>
-      <a th:if="${currentPage > 1}" th:href="@{'/users?page=1'}" title="First"
-         class="fa fa-fast-backward"></a>
-      <span th:unless="${currentPage > 1}" title="First" class="fa fa-fast-backward"></span>
-    </span>
-  <span>
-      <a th:if="${currentPage > 1}" th:href="@{'/users?page=__${currentPage - 1}__'}" title="Previous"
-         class="fa fa-step-backward"></a>
-      <span th:unless="${currentPage > 1}" title="Previous" class="fa fa-step-backward"></span>
-    </span>
-  <span>
-      <a th:if="${currentPage < totalPages}" th:href="@{'/users?page=__${currentPage + 1}__'}" title="Next"
-         class="fa fa-step-forward"></a>
-      <span th:unless="${currentPage < totalPages}" title="Next" class="fa fa-step-forward"></span>
-    </span>
-  <span>
-      <a th:if="${currentPage < totalPages}" th:href="@{'/users?page=__${totalPages}__'}" title="Last"
-         class="fa fa-fast-forward"></a>
-      <span th:unless="${currentPage < totalPages}" title="Last" class="fa fa-step-forward"></span>
-    </span>
-</div>
+    <h2>Users</h2>
+    <table id="users" class="table table-striped">
+      <thead>
+      <tr>
+        <th style="width: 150px;">Name</th>
+        <th style="width: 200px;">Address</th>
+        <th>Email</th>
+        <th style="width: 120px">Telephone</th>
+        <th>Questions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="user : ${listUsers}">
+        <td>
+          <a th:href="@{/users/__${user.id}__}" th:text="${user.firstName + ' ' + user.lastName}"/></a>
+        </td>
+        <td th:text="${user.email}"/>
+        <td th:text="${user.description}"/>
+        <td th:text="${user.telephone}"/>
+        <td><span th:text="${#strings.listJoin(user.questions, ', ')}"/></td>
+      </tr>
+      </tbody>
+    </table>
+    <div th:if="${totalPages > 1}">
+      <span>Pages:</span>
+      <span>[</span>
+      <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+               <a th:if="${currentPage != i}" th:href="@{'/users?page=' + ${i}}">[[${i}]]</a>
+               <span th:unless="${currentPage != i}">[[${i}]]</span>
+               </span>
+      <span>]&nbsp;</span>
+      <span>
+               <a th:if="${currentPage > 1}" th:href="@{'/users?page=1'}" title="First"
+                  class="fa fa-fast-backward"></a>
+               <span th:unless="${currentPage > 1}" title="First" class="fa fa-fast-backward"></span>
+               </span>
+      <span>
+               <a th:if="${currentPage > 1}" th:href="@{'/users?page=__${currentPage - 1}__'}" title="Previous"
+                  class="fa fa-step-backward"></a>
+               <span th:unless="${currentPage > 1}" title="Previous" class="fa fa-step-backward"></span>
+               </span>
+      <span>
+               <a th:if="${currentPage < totalPages}" th:href="@{'/users?page=__${currentPage + 1}__'}" title="Next"
+                  class="fa fa-step-forward"></a>
+               <span th:unless="${currentPage < totalPages}" title="Next" class="fa fa-step-forward"></span>
+               </span>
+      <span>
+               <a th:if="${currentPage < totalPages}" th:href="@{'/users?page=__${totalPages}__'}" title="Last"
+                  class="fa fa-fast-forward"></a>
+               <span th:unless="${currentPage < totalPages}" title="Last" class="fa fa-step-forward"></span>
+               </span>
+    </div>
   </div>
 </div>
 </body>
 </html>
-

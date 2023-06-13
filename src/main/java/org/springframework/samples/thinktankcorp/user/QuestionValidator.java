@@ -44,7 +44,7 @@ public class QuestionValidator implements Validator {
 
 		// type validation
 		if (question.isNew() && question.getCategory() == null) {
-			errors.rejectValue("type", REQUIRED, REQUIRED);
+			errors.rejectValue("category", REQUIRED, REQUIRED);
 		}
 
 		if (question.getDate() == null) {

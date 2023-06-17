@@ -60,6 +60,10 @@ public class Question extends NamedEntity {
 		this.date = date;
 	}
 
+	public void setCurrentDate() {
+		this.date = LocalDate.now();
+	}
+
 	public LocalDate getDate() {
 		return this.date;
 	}

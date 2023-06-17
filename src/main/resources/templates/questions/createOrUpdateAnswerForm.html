@@ -29,7 +29,9 @@
     <form th:object="${answer}" class="form-horizontal" method="post">
       <div class="form-group has-feedback">
         <input
-          th:replace="~{fragments/inputField :: input ('Date', 'date', 'date')}"  />
+          th:replace="~{fragments/inputField :: input ('Date', 'date', 'date')}"
+          th:value="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}"
+          type="hidden" />
         <input
           th:replace="~{fragments/inputField :: input ('Description', 'description', 'text')}" />
       </div>

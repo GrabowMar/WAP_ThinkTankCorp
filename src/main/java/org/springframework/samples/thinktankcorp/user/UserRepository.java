@@ -38,7 +38,7 @@ public interface UserRepository extends Repository<User, Integer> {
 	 * found)
 	 */
 
-	@Query("SELECT DISTINCT user FROM User user left join  user.questions WHERE user.lastName LIKE :lastName% ")
+	@Query("SELECT DISTINCT user FROM User user left outer join Question question on  user.id = question.id WHERE question.name LIKE %:lastName% ")
 	@Transactional(readOnly = true)
 	Page<User> findByLastName(@Param("lastName") String lastName, Pageable pageable);
 

@@ -10,7 +10,6 @@
         <th style="width: 150px;">Name</th>
         <th style="width: 200px;">Address</th>
         <th>Email</th>
-        <th style="width: 120px">Telephone</th>
         <th>Questions</th>
       </tr>
       </thead>
@@ -21,7 +20,6 @@
         </td>
         <td th:text="${user.email}"/>
         <td th:text="${user.description}"/>
-        <td th:text="${user.telephone}"/>
         <td><span th:text="${#strings.listJoin(user.questions, ', ')}"/></td>
       </tr>
       </tbody>

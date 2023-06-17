@@ -30,34 +30,16 @@ public interface UserRepository extends Repository<User, Integer> {
 	@Transactional(readOnly = true)
 	List<QuestionCategory> findQuestionCategories();
 
-	/**
-	 * Retrieve {@link User}s from the data store by last name, returning all users
-	 * whose last name <i>starts</i> with the given name.
-	 * @param lastName Value to search for
-	 * @return a Collection of matching {@link User}s (or an empty Collection if none
-	 * found)
-	 */
-
 	@Query("SELECT DISTINCT user FROM User user left outer join Question question on  user.id = question.id WHERE question.name LIKE %:lastName% ")
 	@Transactional(readOnly = true)
 	Page<User> findByLastName(@Param("lastName") String lastName, Pageable pageable);
-
 
 	@Query("SELECT user FROM User user left join fetch user.questions WHERE user.id =:id")
 	@Transactional(readOnly = true)
 	User findById(@Param("id") Integer id);
 
-	/**
-	 * Save an {@link User} to the data store, either inserting or updating it.
-	 * @param user the {@link User} to save
-	 */
 	void save(User user);
 
-	/**
-	 * Returns all the users from data store
-	 **/
-	@Query("SELECT user FROM User user")
-	@Transactional(readOnly = true)
-	Page<User> findAll(Pageable pageable);
+
 
 }

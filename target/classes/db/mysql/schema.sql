@@ -27,7 +27,6 @@ CREATE TABLE IF NOT EXISTS questions (
 
 CREATE TABLE IF NOT EXISTS answers (
   id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  answer_id INT(4) UNSIGNED,
   answer_date DATE,
   description VARCHAR(255),
   question_id INT(4) UNSIGNED,

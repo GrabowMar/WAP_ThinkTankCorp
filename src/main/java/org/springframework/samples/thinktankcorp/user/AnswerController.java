@@ -28,13 +28,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import jakarta.validation.Valid;
 
-/**
- * @author Juergen Hoeller
- * @author Ken Krebs
- * @author Arjen Poutsma
- * @author Michael Isvy
- * @author Dave Syer
- */
 @Controller
 class AnswerController {
 
@@ -49,13 +42,6 @@ class AnswerController {
 		dataBinder.setDisallowedFields("id");
 	}
 
-	/**
-	 * Called before each and every @RequestMapping annotated method. 2 goals: - Make sure
-	 * we always have fresh data - Since we do not use the session scope, make sure that
-	 * Question object always has an id (Even though id is not part of the form fields)
-	 * @param questionId
-	 * @return Question
-	 */
 	@ModelAttribute("answer")
 	public Answer loadQuestionWithAnswer(@PathVariable("userId") int userId, @PathVariable("questionId") int questionId,
 			Map<String, Object> model) {
@@ -70,15 +56,11 @@ class AnswerController {
 		return answer;
 	}
 
-	// Spring MVC calls method loadQuestionWithAnswer(...) before initNewAnswerForm is
-	// called
 	@GetMapping("/users/{userId}/questions/{questionId}/answers/new")
 	public String initNewAnswerForm() {
 		return "questions/createOrUpdateAnswerForm";
 	}
 
-	// Spring MVC calls method loadQuestionWithAnswer(...) before processNewAnswerForm is
-	// called
 	@PostMapping("/users/{userId}/questions/{questionId}/answers/new")
 	public String processNewAnswerForm(@ModelAttribute User user, @PathVariable int questionId, @Valid Answer answer,
 			BindingResult result) {

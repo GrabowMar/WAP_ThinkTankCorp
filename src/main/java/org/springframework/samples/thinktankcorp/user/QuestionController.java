@@ -31,11 +31,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.validation.Valid;
 
-/**
- * @author Juergen Hoeller
- * @author Ken Krebs
- * @author Arjen Poutsma
- */
 @Controller
 @RequestMapping("/users/{userId}")
 class QuestionController {
@@ -47,6 +42,7 @@ class QuestionController {
 	public QuestionController(UserRepository users) {
 		this.users = users;
 	}
+
 
 	@ModelAttribute("categories")
 	public Collection<QuestionCategory> populateQuestionCategories() {
@@ -69,10 +65,6 @@ class QuestionController {
 		dataBinder.setDisallowedFields("id");
 	}
 
-	@InitBinder("question")
-	public void initQuestionBinder(WebDataBinder dataBinder) {
-		dataBinder.setValidator(new QuestionValidator());
-	}
 
 	@GetMapping("/questions/new")
 	public String initCreationForm(User user, ModelMap model) {

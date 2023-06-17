@@ -37,9 +37,6 @@ public class Answer extends BaseEntity {
 	@NotEmpty
 	private String description;
 
-	/**
-	 * Creates a new instance of Visit for the current date
-	 */
 	public Answer() {
 		this.date = LocalDate.now();
 	}

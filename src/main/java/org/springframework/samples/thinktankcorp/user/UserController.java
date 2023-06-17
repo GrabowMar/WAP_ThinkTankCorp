@@ -115,7 +115,7 @@ class UserController {
 	}
 
 	private Page<User> findPaginatedForUsersLastName(int page, String lastname) {
-		int pageSize = 5;
+		int pageSize = 25;
 		Pageable pageable = PageRequest.of(page - 1, pageSize);
 		return users.findByLastName(lastname, pageable);
 	}

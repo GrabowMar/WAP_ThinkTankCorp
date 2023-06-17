@@ -44,11 +44,6 @@ public class User extends Person {
 	@NotEmpty
 	private String description;
 
-	@Column(name = "telephone")
-	@NotEmpty
-	@Digits(fraction = 0, integer = 10)
-	private String telephone;
-
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id")
 	private List<Question> questions = new ArrayList<>();
@@ -69,13 +64,6 @@ public class User extends Person {
 		this.description = description;
 	}
 
-	public String getTelephone() {
-		return this.telephone;
-	}
-
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
-	}
 
 	public List<Question> getQuestions() {
 		return this.questions;
@@ -87,16 +75,6 @@ public class User extends Person {
 		}
 	}
 
-
-	public Question getQuestion(String title) {
-		return getQuestion(title, false);
-	}
-
-	/**
-	 * Return the Pet with the given id, or null if none found for this Owner.
-	 * @param id to test
-	 * @return a pet if pet id is already in use
-	 */
 	public Question getQuestion(Integer id) {
 		for (Question question : getQuestions()) {
 			if (!question.isNew()) {
@@ -132,7 +110,6 @@ public class User extends Person {
 			.append("firstName", this.getFirstName())
 			.append("email", this.email)
 			.append("description", this.description)
-			.append("telephone", this.telephone)
 			.toString();
 	}
 

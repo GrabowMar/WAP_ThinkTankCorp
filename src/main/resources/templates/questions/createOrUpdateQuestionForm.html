@@ -1,38 +1,49 @@
-<html xmlns:th="https://www.thymeleaf.org"
-      th:replace="~{fragments/layout :: layout (~{::body},'users')}">
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'users')}">
 <body>
-<div  class="container-fluid">
+<section class="call-to-action text-white text-center mb-5" id="signup">
+  <div class="container position-relative">
+    <div class="row justify-content-center">
+      <div class="col-xl-6">
+        <h2 class="mb-4">Ready to get started? Sign up now!</h2>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="container-fluid">
   <div class="container xd-container">
     <h2>
       <th:block th:if="${question['new']}">New </th:block>
       Question
     </h2>
+    <!-- Use a form with input fields and labels for better readability and feedback -->
     <form th:object="${question}" class="form-horizontal" method="post">
-      <input type="hidden" name="id" th:value="*{id}" />
-      <div class="form-group has-feedback">
-        <div class="form-group">
-          <label class="col-sm-2 control-label">User</label>
-          <div class="col-sm-10">
-            <span th:text="${user?.firstName + ' ' + user?.lastName}" />
-          </div>
-        </div>
-        <input
-          th:replace="~{fragments/inputField :: input ('Name', 'name', 'text')}" />
-        <input
-          th:replace="~{fragments/inputField :: input ('Date', 'date', 'date')}" />
-        <input
-          th:replace="~{fragments/selectField :: select ('Category', 'category', ${categories})}" />
+      <input type="hidden" name="id" th:value="*{id}"/>
+      <div class="mb-3">
+        <label for="user" class="form-label">User</label>
+        <!-- Use a span with an icon for better visibility -->
+        <span class="form-control"><i class="fas fa-user"></i> <span th:text="${user?.firstName + ' ' + user?.lastName}"/></span>
       </div>
-      <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-          <button
-            th:with="text=${question['new']} ? 'Add Question' : 'Update Question'"
-            class="btn btn-primary" type="submit" th:text="${text}">Add
-            Question</button>
-        </div>
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" name="name" th:field="*{name}" placeholder="Enter your question name"/>
       </div>
+      <div class="mb-3">
+        <label for="date" class="form-label">Date</label>
+        <input type="date" class="form-control" id="date" name="date" th:field="*{date}" placeholder="Enter your question date"/>
+      </div>
+      <div class="mb-3">
+        <label for="category" class="form-label">Category</label>
+        <!-- Use a select field with options for better usability -->
+        <select class="form-select" id="category" name="category" th:field="*{category}">
+          <!-- Use a loop to display each category as an option -->
+          <option th:each="category : ${categories}" th:value="${category}" th:text="${category}"/>
+        </select>
+      </div>
+      <!-- Use a button with an icon for better usability -->
+      <button th:with="text=${question['new']}? 'Add Question' : 'Update Question'" class="btn btn-primary" type="submit"><i class="fas fa-save"></i> [[${text}]]</button>
     </form>
   </div>
 </div>
 </body>
 </html>
+

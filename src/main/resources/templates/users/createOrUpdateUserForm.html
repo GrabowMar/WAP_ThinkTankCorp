@@ -1,30 +1,40 @@
-<html xmlns:th="https://www.thymeleaf.org"
-      th:replace="~{fragments/layout :: layout (~{::body},'users')}">
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'users')}">
 <body>
-<div  class="container-fluid">
-  <div class="container xd-container">
-    <h2>User</h2>
-    <form th:object="${user}" class="form-horizontal" id="add-user-form" method="post">
-      <div class="form-group has-feedback">
-        <input
-          th:replace="~{fragments/inputField :: input ('First Name', 'firstName', 'text')}" />
-        <input
-          th:replace="~{fragments/inputField :: input ('Last Name', 'lastName', 'text')}" />
-        <input
-          th:replace="~{fragments/inputField :: input ('Address', 'email', 'text')}" />
-        <input
-          th:replace="~{fragments/inputField :: input ('Description', 'description', 'text')}" />
+<section class="call-to-action text-white  mb-5" id="signup">
+  <div class="container position-relative">
+    <div class="row justify-content-center">
+      <div class="col-xl-6">
+        <h2 class="mb-4">Ready to get started? Sign up now!</h2>
       </div>
-      <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-          <button
-            th:with="text=${user['new']} ? 'Add User' : 'Update User'"
-            class="btn btn-primary" type="submit" th:text="${text}">Add
-            User</button>
-        </div>
-      </div>
-    </form>
+    </div>
   </div>
-</div>
+</section>
+<div class="container-fluid">
+  <div class="container xd-container">
+    <!-- Use a form with a card and a background image for better presentation and style -->
+      <!-- Use a placeholder image for the background -->
+        <form th:object="${user}" class="form-horizontal" id="add-user-form" method="post">
+          <!-- Use input fields with labels and placeholders for better readability and feedback -->
+          <div class="mb-3">
+            <label for="firstName" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="firstName" name="firstName" th:field="*{firstName}" placeholder="Enter your first name"/>
+          </div>
+          <div class="mb-3">
+            <label for="lastName" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="lastName" name="lastName" th:field="*{lastName}" placeholder="Enter your last name"/>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Address</label>
+            <input type="text" class="form-control" id="email" name="email" th:field="*{email}" placeholder="Enter your address"/>
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <input type="text" class="form-control" id="description" name="description" th:field="*{description}" placeholder="Enter your description"/>
+          </div>
+          <!-- Use a button with a tooltip for better usability -->
+          <button th:with="text=${user['new']}? 'Add User' : 'Update User'" class="btn btn-primary" type="submit" data-toggle="tooltip" data-placement="top" th:title="${text}"><i class="fas fa-save"></i> [[${text}]]</button>
+        </form>
+      </div>
+    </div>
 </body>
 </html>

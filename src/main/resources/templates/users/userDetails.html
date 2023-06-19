@@ -1,66 +1,79 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org"
-      th:replace="~{fragments/layout :: layout (~{::body},'users')}">
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'users')}">
 <body>
-<div  class="container-fluid">
+<!-- Call to Action-->
+<section class="call-to-action text-white  mb-5" id="signup">
+  <div class="container position-relative">
+    <div class="row justify-content-center">
+      <div class="col-xl-6">
+        <h2 class="mb-4">Ready to get started? Sign up now!</h2>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="container-fluid">
   <div class="container xd-container">
     <h2>User Information</h2>
-    <table class="table table-striped" th:object="${user}">
-      <tr>
-        <th>Name</th>
-        <td><b th:text="*{firstName + ' ' + lastName}"></b></td>
-      </tr>
-      <tr>
-        <th>Email</th>
-        <td th:text="*{email}"></td>
-      </tr>
-      <tr>
-        <th>City</th>
-        <td th:text="*{description}"></td>
-      </tr>
-    </table>
-    <a th:href="@{__${user.id}__/edit}" class="btn btn-primary">Edit
-      User</a>
-    <a th:href="@{__${user.id}__/questions/new}" class="btn btn-primary">Add
-      New Question</a>
-    <br />
-    <br />
-    <br />
+    <!-- Use a card with an avatar and icons for better presentation -->
+    <div class="card mb-3">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <!-- Use a placeholder image for the avatar -->
+          <img src="https://via.placeholder.com/200x200" class="img-fluid rounded-start" alt="User avatar">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title" th:text="${user.firstName + ' ' + user.lastName}"></h5>
+            <p class="card-text"><i class="fas fa-envelope"></i> <span th:text="${user.email}"/></p>
+            <p class="card-text"><i class="fas fa-map-marker-alt"></i> <span th:text="${user.description}"/></p>
+            <!-- Use buttons with icons for better usability -->
+            <a th:href="@{__${user.id}__/edit}" class="btn btn-primary"><i class="fas fa-edit"></i> Edit User</a>
+            <a th:href="@{__${user.id}__/questions/new}" class="btn btn-primary"><i class="fas fa-plus"></i> Add New Question</a>
+          </div>
+        </div>
+      </div>
+    </div>
     <h2>Questions and answers</h2>
-    <table class="table table-striped">
-      <tr th:each="question : ${user.questions}">
-        <td valign="top">
-          <dl class="dl-horizontal">
-            <dt>Name</dt>
-            <dd th:text="${question.name}"></dd>
-            <dt>Question Date</dt>
-            <dd
-              th:text="${#temporals.format(question.date, 'yyyy-MM-dd')}"></dd>
-            <dt>Type</dt>
-            <dd th:text="${question.category}"></dd>
-          </dl>
-        </td>
-        <td valign="top">
-          <table class="table-condensed">
-            <thead>
-            <tr>
-              <th>Answer Date</th>
-              <th>Description</th>
-            </tr>
-            </thead>
-            <tr th:each="answer : ${question.answers}">
-              <td th:text="${#temporals.format(answer.date, 'yyyy-MM-dd')}"></td>
-              <td th:text="${answer?.description}"></td>
-            </tr>
-            <tr>
-              <td><a th:href="@{__${user.id}__/questions/__${question.id}__/edit}">Edit Question</a></td>
-              <td><a th:href="@{__${user.id}__/questions/__${question.id}__/answers/new}">Add Answer</a></td>
-            </tr>
-          </table>
-        </td>
-      </tr>
-    </table>
+    <!-- Use an accordion for better organization and responsiveness -->
+    <div class="accordion" id="questionsAccordion">
+      <div class="accordion-item" th:each="question : ${user.questions}">
+        <h2 class="accordion-header" th:id="'questionHeading' + ${question.id}">
+          <!-- Use a button with icons and badges for better visibility and interaction -->
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" th:data-bs-target="'#questionCollapse' + ${question.id}" aria-expanded="false" th:aria-controls="'questionCollapse' + ${question.id}">
+            <i class="fas fa-question-circle"></i>
+            <span th:text="${question.name}"/>&nbsp;/&nbsp;
+            <span th:text="${question.category}"/>&nbsp;/&nbsp;
+            <span th:text="${#temporals.format(question.date, 'yyyy-MM-dd')}"/>
+            <!-- Use a badge to show the number of answers -->
+            <span class="badge bg-secondary ms-auto" th:text="${#lists.size(question.answers)}"/>
+          </button>
+        </h2>
+        <div th:id="'questionCollapse' + ${question.id}" class="accordion-collapse collapse" th:aria-labelledby="'questionHeading' + ${question.id}" data-bs-parent="#questionsAccordion">
+          <div class="accordion-body">
+            <!-- Use a list group for better formatting and alignment -->
+            <ul class="list-group list-group-flush">
+              <!-- Use icons and tooltips for more information -->
+              <li class="list-group-item"><i class="fas fa-calendar-alt" data-toggle="tooltip" data-placement="top" title="Question Date"></i>
+                <span th:text="${#temporals.format(question.date, 'yyyy-MM-dd')}"/>
+              </li>
+              <!-- Use a loop to display each answer as a list item -->
+              <th:block th:each="answer : ${question.answers}">
+                <li class="list-group-item"><i class="fas fa-reply" data-toggle="tooltip" data-placement="top" title="${#temporals.format(answer.date, 'yyyy-MM-dd')}"></i>
+                  <span th:text="${answer?.description}"/>
+                </li>
+              </th:block>
+              <!-- Use buttons with icons for better usability -->
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <a th:href="@{__${user.id}__/questions/__${question.id}__/edit}" class="btn btn-primary"><i class="fas fa-edit"></i> Edit Question</a>
+                <a th:href="@{__${user.id}__/questions/__${question.id}__/answers/new}" class="btn btn-primary"><i class="fas fa-plus"></i> Add Answer</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 </body>
 </html>
+

@@ -3,26 +3,28 @@
       th:replace="~{fragments/layout :: layout (~{::body},'users')}">
 <body>
 <!-- Masthead-->
-<header class="masthead">
+<header class="masthead bg-primary">
   <div class="container position-relative">
     <div class="row justify-content-center">
-        <div class="text-center text-white">
-          <form th:object="${user}" th:action="@{/users}" method="get" class="form-subscribe" id="contactForm">
-            <div class="row">
-              <div class="col-lg-8">
+      <div class="text-center text-white">
+        <h1 class="display-4">Welcome to our user management system</h1>
+        <p class="lead">You can search, add, edit or delete users here.</p>
+        <form th:object="${user}" th:action="@{/users}" method="get" class="form-subscribe" id="contactForm">
+          <div class="row">
+            <div class="col-lg-8">
               <input class="form-control" th:field="*{lastName}" size="30"
-                     maxlength="80" />
-              </div>
-              <div class="col-lg-2">
-                <button type="submit" class="btn btn-primary w-100">Find
-                  User</button>
-              </div>
-              <div class="col-lg-2">
-              <a class="btn btn-primary w-100" th:href="@{/users/new}">Add User</a>
-              </div>
+                     maxlength="80" placeholder="Enter last name" />
             </div>
-          </form>
-        </div>
+            <div class="col-lg-2">
+              <button type="submit" class="btn btn-secondary w-100">Find
+                User</button>
+            </div>
+            <div class="col-lg-2">
+              <a class="btn btn-secondary w-100" th:href="@{/users/new}">Add User</a>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </header>
@@ -31,30 +33,28 @@
   <div class="container">
     <h2 class="mb-5">What people are saying...</h2>
     <div class="row">
-      <div class="col-lg-4">
-        <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-          <img class="img-fluid rounded-circle mb-3" src="assets/img/testimonials-1.jpg" alt="..." />
-          <h5>Margaret E.</h5>
-          <p class="font-weight-light mb-0">"This is fantastic! Thanks so much guys!"</p>
-        </div>
-      </div>
-      <div class="col-lg-4">
-        <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-          <img class="img-fluid rounded-circle mb-3" src="assets/img/testimonials-2.jpg" alt="..." />
-          <h5>Fred S.</h5>
-          <p class="font-weight-light mb-0">"Bootstrap is amazing. I've been using it to create lots of super nice landing pages."</p>
-        </div>
-      </div>
-      <div class="col-lg-4">
-        <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-          <img class="img-fluid rounded-circle mb-3" src="assets/img/testimonials-3.jpg" alt="..." />
-          <h5>Sarah W.</h5>
-          <p class="font-weight-light mb-0">"Thanks so much for making these free resources available to us!"</p>
+      <div th:each="testimonial : ${testimonials}">
+        <div class="col-lg-4">
+          <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+            <img th:src="@{'assets/img/testimonials-' + ${testimonial.id} + '.jpg'}" alt="" class="img-fluid rounded-circle mb-3" />
+            <h5 th:text="${testimonial.name}"></h5>
+            <p th:text="${testimonial.comment}" class="font-weight-light mb-0"></p>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
 <!-- Call to Action-->
+<section class="call-to-action text-white text-center bg-secondary">
+  <div class="container position-relative">
+    <h3>Want to learn more about Thymeleaf?</h3>
+    <p>Visit the official website and documentation.</p>
+    <a href="https://www.thymeleaf.org/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Go to Thymeleaf</a>
+  </div>
+</section>
+
 </body>
 </html>
+

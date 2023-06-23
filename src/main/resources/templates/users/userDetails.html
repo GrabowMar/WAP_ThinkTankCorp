@@ -11,7 +11,7 @@
     </div>
   </div>
 </section>
-<div class="container-fluid min-vh-100">
+<div class="container-fluid min-vh-100 pb-5">
   <div class="container xd-container">
     <!-- Use a card with an avatar and icons for better presentation -->
     <div class="card mb-3">
@@ -39,12 +39,10 @@
         <h2 class="accordion-header" th:id="'questionHeading' + ${question.id}">
           <!-- Use a button with icons and badges for better visibility and interaction -->
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" th:data-bs-target="'#questionCollapse' + ${question.id}" aria-expanded="false" th:aria-controls="'questionCollapse' + ${question.id}">
-            <i class="fas fa-question-circle"></i>
+            <span class="badge bg-secondary" th:text="${#lists.size(question.answers)}"/>&nbsp;/&nbsp;
             <span th:text="${question.name}"/>&nbsp;/&nbsp;
             <span th:text="${question.category}"/>&nbsp;/&nbsp;
             <span th:text="${#temporals.format(question.date, 'yyyy-MM-dd')}"/>
-            <!-- Use a badge to show the number of answers -->
-            <span class="badge bg-secondary ms-auto" th:text="${#lists.size(question.answers)}"/>
           </button>
         </h2>
         <div th:id="'questionCollapse' + ${question.id}" class="accordion-collapse collapse" th:aria-labelledby="'questionHeading' + ${question.id}" data-bs-parent="#questionsAccordion">
@@ -52,19 +50,19 @@
             <!-- Use a list group for better formatting and alignment -->
             <ul class="list-group list-group-flush">
               <!-- Use icons and tooltips for more information -->
-              <li class="list-group-item"><i class="fas fa-calendar-alt" data-toggle="tooltip" data-placement="top" title="Question Date"></i>
+              <li class="list-group-item"><i class="fa fa-calendar-alt" data-toggle="tooltip" data-placement="top" title="Question Date"></i>
                 <span th:text="${#temporals.format(question.date, 'yyyy-MM-dd')}"/>
               </li>
               <!-- Use a loop to display each answer as a list item -->
               <th:block th:each="answer : ${question.answers}">
-                <li class="list-group-item"><i class="fas fa-reply" data-toggle="tooltip" data-placement="top" title="${#temporals.format(answer.date, 'yyyy-MM-dd')}"></i>
-                  <span th:text="${answer?.description}"/>
+                <li class="list-group-item"><i class="fa fa-reply" data-toggle="tooltip" data-placement="top" title="${#temporals.format(answer.date, 'yyyy-MM-dd')}"></i>
+                  <span th:text="${answer?.answerDescription}"/>
                 </li>
               </th:block>
               <!-- Use buttons with icons for better usability -->
               <li class="list-group-item d-flex justify-content-between align-items-center">
-                <a th:href="@{__${user.id}__/questions/__${question.id}__/edit}" class="btn btn-primary"><i class="fas fa-edit"></i> Edit Question</a>
-                <a th:href="@{__${user.id}__/questions/__${question.id}__/answers/new}" class="btn btn-primary"><i class="fas fa-plus"></i> Add Answer</a>
+                <a th:href="@{__${user.id}__/questions/__${question.id}__/edit}" class="btn btn-primary"><i class="fa fa-edit"></i> Edit Question</a>
+                <a th:href="@{__${user.id}__/questions/__${question.id}__/answers/new}" class="btn btn-primary"><i class="fa fa-plus"></i> Add Answer</a>
               </li>
             </ul>
           </div>

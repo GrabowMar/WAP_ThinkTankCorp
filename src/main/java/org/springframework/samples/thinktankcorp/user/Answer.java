@@ -35,7 +35,8 @@ public class Answer extends BaseEntity {
 	private LocalDate date;
 
 	@NotEmpty
-	private String description;
+	@Column(name = "description")
+	private String answerDescription;
 
 	public Answer() {
 		this.date = LocalDate.now();
@@ -49,12 +50,12 @@ public class Answer extends BaseEntity {
 		this.date = date;
 	}
 
-	public String getDescription() {
-		return this.description;
+	public String getAnswerDescription() {
+		return this.answerDescription;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setAnswerDescription(String description) {
+		this.answerDescription = description;
 	}
 
 }

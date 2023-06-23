@@ -4,7 +4,7 @@
   <div class="container position-relative">
     <div class="row justify-content-center">
       <div class="col-xl-6">
-        <h2 class="mb-4">Update user form</h2>
+        <h2 class="mb-4">Update answer form!</h2>
       </div>
     </div>
   </div>
@@ -47,7 +47,7 @@
       </div>
       <div class="mb-3">
         <label for="description" class="form-label">Description</label>
-        <input type="text" class="form-control" id="description" name="description" th:field="*{description}" placeholder="Enter your answer description"/>
+        <input type="text" class="form-control" id="description" name="description" th:field="*{answerDescription}" placeholder="Enter your answer description"/>
       </div>
       <!-- Use a button with an icon for better usability -->
       <input type="hidden" name="questionId" th:value="${question.id}"/>
@@ -71,7 +71,7 @@
           <!-- Use a loop to display each answer as a table row -->
           <tr th:if="${!answer['new']}" th:each="answer : ${question.answers}">
             <td th:text="${#temporals.format(answer.date, 'yyyy-MM-dd')}"></td>
-            <td th:text="${answer.description}"></td>
+            <td th:text="${answer.AnswerDescription}"></td>
           </tr>
         </table>
       </div>

@@ -30,10 +30,9 @@ public interface UserRepository extends Repository<User, Integer> {
 	@Transactional(readOnly = true)
 	List<QuestionCategory> findQuestionCategories();
 
-	@Query("SELECT DISTINCT user FROM User user join Question question on  user.id = question.id WHERE question.name LIKE %:lastName% ")
+	@Query("SELECT DISTINCT user FROM User user left join  user.questions WHERE user.lastName LIKE :lastName% ")
 	@Transactional(readOnly = true)
 	Page<User> findByLastName(@Param("lastName") String lastName, Pageable pageable);
-
 	@Query("SELECT user FROM User user left join fetch user.questions WHERE user.id =:id")
 	@Transactional(readOnly = true)
 	User findById(@Param("id") Integer id);

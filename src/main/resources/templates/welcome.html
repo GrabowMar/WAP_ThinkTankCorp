@@ -3,6 +3,13 @@
 <html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'home')}">
 
 <body>
+<script type="text/javascript">
+  var alerted = localStorage.getItem('alerted') || '';
+  if (alerted != 'yes') {
+    alert("This website uses CDNs to load Bootstrap. If you don't have an internet connection, the website will not load properly.");
+    localStorage.setItem('alerted','yes');
+  }
+</script>
 <!-- Masthead-->
 <section class="call-to-action text-white text-center" id="signup">
   <div class="container position-relative">

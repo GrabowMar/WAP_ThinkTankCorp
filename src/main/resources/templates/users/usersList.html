@@ -10,9 +10,8 @@
     </div>
   </div>
 </section>
-<div class="container-fluid">
+<div class="container-fluid min-vh-100">
   <div class="container xd-container">
-    <h2>Users</h2>
     <!-- Use cards instead of table for better readability and responsiveness -->
     <div class="row row-cols-1 row-cols-md-3 g-4">
       <div class="col" th:each="user : ${listUsers}">
@@ -20,9 +19,9 @@
           <div class="card-body">
             <!-- Use icons and badges for more visual appeal -->
             <h5 class="card-title"><a th:href="@{/users/__${user.id}__}" th:text="${user.firstName + ' ' + user.lastName}"/></a></h5>
-            <p class="card-text"><i class="fas fa-envelope"></i> <span th:text="${user.email}"/></p>
-            <p class="card-text"><i class="fas fa-info-circle"></i> <span th:text="${user.description}"/></p>
-            <p class="card-text"><i class="fas fa-question-circle"></i>
+            <p class="card-text"><i class="fa fa-envelope"></i> <span th:text="${user.email}"/></p>
+            <p class="card-text"><i class="fa fa-info-circle"></i> <span th:text="${user.description}"/></p>
+            <p class="card-text"><i class="fa fa-question-circle"></i>
               <!-- Use a loop to display each question as a badge -->
               <th:block th:each="question : ${user.questions}">
                 <span class="badge bg-secondary" th:text="${question}"/>

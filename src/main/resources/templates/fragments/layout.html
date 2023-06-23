@@ -46,7 +46,11 @@
           Home
         </li>
 
-        <li th:replace="~{::menuItem ('/users/find','users','find users','search','Find users')}">
+        <li th:replace="~{::menuItem ('/users/find','users','find questions','search','Find questions')}">
+          Find users
+        </li>
+
+        <li th:replace="~{::menuItem ('/users','questions','find questions','users','All questions')}">
           Find users
         </li>
 
@@ -63,33 +67,37 @@
 
 <div class="">
   <th:block th:insert="${template}" />
-  <footer class="footer bg-dark text-white mt-5">
+  <!-- Icons Grid-->
+  <section class="features-icons bg-light text-center">
     <div class="container">
       <div class="row">
-        <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
-          <ul class="list-inline mb-2">
-            <li class="list-inline-item"><a href="#!" class="text-white">About</a></li>
-            <li class="list-inline-item">⋅</li>
-            <li class="list-inline-item"><a href="#!" class="text-white">Contact</a></li>
-            <li class="list-inline-item">⋅</li>
-            <li class="list-inline-item"><a href="#!" class="text-white">Terms of Use</a></li>
-            <li class="list-inline-item">⋅</li>
-            <li class="list-inline-item"><a href="#!" class="text-white">Privacy Policy</a></li>
-          </ul>
-          <p class="text-muted small mb-4 mb-lg-0">© Your Website 2023. All Rights Reserved.</p>
+        <div class="col-lg-4">
+          <div class="mx-auto mb-5 mb-lg-0 mb-lg-3">
+            <h3>Fully Responsive</h3>
+            <p class="lead mb-0">This theme will look great on any device, no matter the size!</p>
+          </div>
         </div>
-        <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
-          <ul class="list-inline mb-0">
-            <li class="list-inline-item me-4">
-              <a href="#!" class=""><i class="bi-facebook fs-3 text-white"></i></a>
-            </li>
-            <li class="list-inline-item me-4">
-              <a href="#!" class=""><i class="bi-twitter fs-3 text-white"></i></a>
-            </li>
-            <li class="list-inline-item">
-              <a href="#!" class=""><i class="bi-instagram fs-3 text-white"></i></a>
-            </li>
-          </ul>
+        <div class="col-lg-4">
+          <div class=" mx-auto mb-5 mb-lg-0 mb-lg-3">
+            <h3>Bootstrap 5 Ready</h3>
+            <p class="lead mb-0">Featuring the latest build of the new Bootstrap 5 framework!</p>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="mx-auto mb-0 mb-lg-3">
+            <h3>Easy to Use</h3>
+            <p class="lead mb-0">Ready to use with your own content, or customize the source files!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="footer bg-dark text-white">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6  text-center text-lg-start my-auto">
+
+          <p class="text-muted small mb-4 mb-lg-0">Marcin Grabowski and Tymoteusz Gajda 2023</p>
         </div>
       </div>
     </div>

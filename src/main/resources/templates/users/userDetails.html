@@ -6,14 +6,13 @@
   <div class="container position-relative">
     <div class="row justify-content-center">
       <div class="col-xl-6">
-        <h2 class="mb-4">Ready to get started? Sign up now!</h2>
+        <h2 class="mb-4">User Information</h2>
       </div>
     </div>
   </div>
 </section>
-<div class="container-fluid">
+<div class="container-fluid min-vh-100">
   <div class="container xd-container">
-    <h2>User Information</h2>
     <!-- Use a card with an avatar and icons for better presentation -->
     <div class="card mb-3">
       <div class="row g-0">
@@ -24,11 +23,11 @@
         <div class="col-md-8">
           <div class="card-body">
             <h5 class="card-title" th:text="${user.firstName + ' ' + user.lastName}"></h5>
-            <p class="card-text"><i class="fas fa-envelope"></i> <span th:text="${user.email}"/></p>
-            <p class="card-text"><i class="fas fa-map-marker-alt"></i> <span th:text="${user.description}"/></p>
+            <p class="card-text"><i class="fa fa-envelope"></i> <span th:text="${user.email}"/></p>
+            <p class="card-text"><i class="fa fa-map-marker-alt"></i> <span th:text="${user.description}"/></p>
             <!-- Use buttons with icons for better usability -->
-            <a th:href="@{__${user.id}__/edit}" class="btn btn-primary"><i class="fas fa-edit"></i> Edit User</a>
-            <a th:href="@{__${user.id}__/questions/new}" class="btn btn-primary"><i class="fas fa-plus"></i> Add New Question</a>
+            <a th:href="@{__${user.id}__/edit}" class="btn btn-primary"><i class="fa fa-edit"></i> Edit User</a>
+            <a th:href="@{__${user.id}__/questions/new}" class="btn btn-primary"><i class="fa fa-plus"></i> Add New Question</a>
           </div>
         </div>
       </div>

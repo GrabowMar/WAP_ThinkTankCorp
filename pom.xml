@@ -10,7 +10,7 @@
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>3.1.0</version>
   </parent>
-  <name>petclinic</name>
+  <name>ThinkTankCorp</name>
 
   <properties>
 

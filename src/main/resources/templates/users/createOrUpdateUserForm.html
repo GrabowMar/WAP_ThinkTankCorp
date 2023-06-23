@@ -9,7 +9,7 @@
     </div>
   </div>
 </section>
-<div class="container-fluid">
+<div class="container-fluid min-vh-100">
   <div class="container xd-container">
     <!-- Use a form with a card and a background image for better presentation and style -->
       <!-- Use a placeholder image for the background -->
@@ -32,7 +32,7 @@
             <input type="text" class="form-control" id="description" name="description" th:field="*{description}" placeholder="Enter your description"/>
           </div>
           <!-- Use a button with a tooltip for better usability -->
-          <button th:with="text=${user['new']}? 'Add User' : 'Update User'" class="btn btn-primary" type="submit" data-toggle="tooltip" data-placement="top" th:title="${text}"><i class="fas fa-save"></i> [[${text}]]</button>
+          <button th:with="text=${user['new']}? 'Add User' : 'Update User'" class="btn btn-primary" type="submit" data-toggle="tooltip" data-placement="top" th:title="${text}"><i class="fa fa-save"></i> [[${text}]]</button>
         </form>
       </div>
     </div>

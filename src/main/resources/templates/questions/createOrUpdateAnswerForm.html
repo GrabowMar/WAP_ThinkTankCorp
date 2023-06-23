@@ -9,7 +9,7 @@
     </div>
   </div>
 </section>
-<div class="container-fluid">
+<div class="container-fluid min-vh-100">
   <div class="container xd-container">
     <h2>
       <th:block th:if="${answer['new']}">New </th:block>
@@ -24,16 +24,16 @@
         <!-- Use a list group for better formatting and alignment -->
         <ul class="list-group list-group-flush">
           <!-- Use icons and tooltips for more information -->
-          <li class="list-group-item"><i class="fas fa-question-circle" data-toggle="tooltip" data-placement="top" title="Name"></i>
+          <li class="list-group-item"><i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="Name"></i>
             <span th:text="${question.name}"/>
           </li>
-          <li class="list-group-item"><i class="fas fa-calendar-alt" data-toggle="tooltip" data-placement="top" title="Date"></i>
+          <li class="list-group-item"><i class="fa fa-calendar-alt" data-toggle="tooltip" data-placement="top" title="Date"></i>
             <span th:text="${#temporals.format(question.date, 'yyyy-MM-dd')}"/>
           </li>
-          <li class="list-group-item"><i class="fas fa-tag" data-toggle="tooltip" data-placement="top" title="Category"></i>
+          <li class="list-group-item"><i class="fa fa-tag" data-toggle="tooltip" data-placement="top" title="Category"></i>
             <span th:text="${question.category}"/>
           </li>
-          <li class="list-group-item"><i class="fas fa-user" data-toggle="tooltip" data-placement="top" title="User"></i>
+          <li class="list-group-item"><i class="fa fa-user" data-toggle="tooltip" data-placement="top" title="User"></i>
             <span th:text="${user?.firstName + ' ' + user?.lastName}"/>
           </li>
         </ul>
@@ -51,7 +51,7 @@
       </div>
       <!-- Use a button with an icon for better usability -->
       <input type="hidden" name="questionId" th:value="${question.id}"/>
-      <button class="btn btn-primary" type="submit"><i class="fas fa-save"></i> Add Answer</button>
+      <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Add Answer</button>
     </form>
     <br/>
     <!-- Use a card with a header and a body for better presentation -->

@@ -9,7 +9,7 @@
     </div>
   </div>
 </section>
-<div class="container-fluid">
+<div class="container-fluid min-vh-100">
   <div class="container xd-container">
     <h2>
       <th:block th:if="${question['new']}">New </th:block>
@@ -19,9 +19,9 @@
     <form th:object="${question}" class="form-horizontal" method="post">
       <input type="hidden" name="id" th:value="*{id}"/>
       <div class="mb-3">
-        <label for="user" class="form-label">User</label>
+        <label class="form-label">User</label>
         <!-- Use a span with an icon for better visibility -->
-        <span class="form-control"><i class="fas fa-user"></i> <span th:text="${user?.firstName + ' ' + user?.lastName}"/></span>
+        <span class="form-control"><i class="fa fa-user"></i> <span th:text="${user?.firstName + ' ' + user?.lastName}"/></span>
       </div>
       <div class="mb-3">
         <label for="name" class="form-label">Name</label>

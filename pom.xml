@@ -84,6 +84,8 @@
       <artifactId>font-awesome</artifactId>
       <version>${webjars-font-awesome.version}</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.webjars/bootstrap -->
+
     <!-- end of webjars -->
 
     <dependency>

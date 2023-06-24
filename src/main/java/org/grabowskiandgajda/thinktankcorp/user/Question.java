@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.samples.thinktankcorp.user;
+package org.grabowskiandgajda.thinktankcorp.user;
 
 import java.time.LocalDate;
 import java.util.Collection;
@@ -21,7 +21,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.samples.thinktankcorp.model.NamedEntity;
+import org.grabowskiandgajda.thinktankcorp.model.NamedEntity;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

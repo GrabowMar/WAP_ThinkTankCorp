@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.samples.thinktankcorp.user;
+package org.grabowskiandgajda.thinktankcorp.user;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.core.style.ToStringCreator;
-import org.springframework.samples.thinktankcorp.model.Person;
+import org.grabowskiandgajda.thinktankcorp.model.Person;
 import org.springframework.util.Assert;
 
 import jakarta.persistence.CascadeType;
@@ -29,7 +29,6 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotEmpty;
 
 @Entity

@@ -13,32 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.samples.thinktankcorp.model;
+package org.grabowskiandgajda.thinktankcorp.user;
 
-import java.io.Serializable;
+import org.grabowskiandgajda.thinktankcorp.model.NamedEntity;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
-@MappedSuperclass
-public class BaseEntity implements Serializable {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public boolean isNew() {
-		return this.id == null;
-	}
+/**
+ * @author Juergen Hoeller Can be Cat, Dog, Hamster...
+ */
+@Entity
+@Table(name = "categories")
+public class QuestionCategory extends NamedEntity {
 
 }

@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.samples.thinktankcorp.user;
+package org.grabowskiandgajda.thinktankcorp.user;
 
 import java.time.LocalDate;
 
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.samples.thinktankcorp.model.BaseEntity;
+import org.grabowskiandgajda.thinktankcorp.model.BaseEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
